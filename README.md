@@ -21,17 +21,24 @@
    git clone https://github.com
    ```
 2. **Запуск Backend:**
-   cd backend
-   python -m venv venv
-   source venv/bin/activate # Или .\venv\Scripts\activate для Windows
-   pip install -r requirements.txt
-   uvicorn main:app --reload
+
+```bash
+ cd backend
+ python -m venv venv
+ source venv/bin/activate # Или .\venv\Scripts\activate для Windows
+ pip install -r requirements.txt
+ uvicorn main:app --reload
+```
 
 3. **Запуск Frontend:**
-   cd frontend
-   npm install
-   npm run dev
 
-**📬 Контакты**
+```bash
+  cd frontend
+  npm install
+  npm run dev
+```
+
+## 📬 Контакты
+
 **GitHub**: Krylatka2022
 **Сайт**: https://krylatka-dev.ru
