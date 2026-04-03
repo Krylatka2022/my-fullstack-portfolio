@@ -5,7 +5,7 @@
 ## 🚀 Стек технологий
 
 - **Frontend**: React (Vite), Tailwind CSS, Axios.
-- **Backend**: Python, FastAPI, Uvicorn.
+- **Backend**: Python, FastAPI, Uvicorn. Бэкенд реализован на FastAPI. На текущем хостинге (Beget Shared) API эмулируется через статический JSON для оптимизации ресурсов
 - **Деплой**: GitHub Actions, Beget (VPS/Python Hosting).
 - **Домен**: [krylatka-dev.ru](https://krylatka-dev.ru)
 

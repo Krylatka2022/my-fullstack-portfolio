@@ -22,6 +22,25 @@ function App() {
   //     });
   // }, []);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Отправка...");
+    try {
+      await axios.post("https://krylatka-dev.ru", formData);
+      setStatus("✅ Сообщение успешно отправлено!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setStatus("❌ Ошибка при отправке. Попробуйте позже.");
+    }
+  };
+
   useEffect(() => {
     // Автоматически выбираем адрес: если мы на localhost, то 8000, иначе — твой API
     const API_URL =
@@ -96,6 +115,52 @@ function App() {
 
       <footer className="py-10 text-center text-slate-500 text-sm border-t border-slate-800">
         © 2024 • Построено на React & FastAPI
+        <section className="max-w-2xl mx-auto px-6 py-20 border-t border-slate-800">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Связаться со мной
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Ваше имя"
+              required
+              className="w-full bg-slate-800 border border-slate-700 p-3 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+            />
+            <input
+              type="email"
+              placeholder="Ваш Email"
+              required
+              className="w-full bg-slate-800 border border-slate-700 p-3 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+            />
+            <textarea
+              placeholder="Ваше сообщение"
+              required
+              rows="4"
+              className="w-full bg-slate-800 border border-slate-700 p-3 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+            ></textarea>
+            <button
+              type="submit"
+              className="w-full bg-cyan-600 hover:bg-cyan-500 py-3 rounded-lg font-bold transition-all shadow-lg shadow-cyan-900/20"
+            >
+              Отправить сообщение
+            </button>
+            {status && (
+              <p className="text-center text-sm text-cyan-400 mt-2">{status}</p>
+            )}
+          </form>
+        </section>
       </footer>
     </div>
   );
