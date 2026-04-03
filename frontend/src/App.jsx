@@ -27,7 +27,7 @@ function App() {
     const API_URL =
       window.location.hostname === "localhost"
         ? "http://localhost:8000/api/projects" // Оставляем только тот адрес, который сработал, для локальной версии
-        : "https://krylatka-dev.ru";
+        : "https://api.krylatka-dev.ru/api/projects";
 
     axios
       .get(API_URL)
