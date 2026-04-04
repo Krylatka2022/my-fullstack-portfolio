@@ -17,10 +17,13 @@ if ($data) {
     // $headers = "From: admin@krylatka-dev.ru\r\n";
     // $headers .= "Reply-To: " . strip_tags($data['email']) . "\r\n";
     // $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
-    $headers = "From: info@krylatka-dev.ru\r\n";
-    $headers .= "Reply-To: " . $data['email'] . "\r\n";
-    $headers .= "Content-Type: text/plain; charset=utf-8";
+    // $headers = "From: info@krylatka-dev.ru\r\n";
+    // $headers .= "Reply-To: " . $data['email'] . "\r\n";
+    // $headers .= "Content-Type: text/plain; charset=utf-8";
     
+    $headers = "Content-Type: text/plain; charset=utf-8\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion();
+
     // Отправка письма
     if(mail($to, $subject, $message, $headers)) {
         echo json_encode(["status" => "success"]);
