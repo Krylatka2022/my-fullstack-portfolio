@@ -29,14 +29,36 @@ function App() {
   });
   const [status, setStatus] = useState("");
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setStatus("Отправка...");
+  //   try {
+  //     await axios.post("https://krylatka-dev.ru", formData);
+  //     setStatus("✅ Сообщение успешно отправлено!");
+  //     setFormData({ name: "", email: "", message: "" });
+  //   } catch (error) {
+  //     setStatus("❌ Ошибка при отправке. Попробуйте позже.");
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Отправка...");
+
+    // УНИВЕРСАЛЬНЫЙ АДРЕС:
+    const CONTACT_URL =
+      window.location.hostname === "localhost"
+        ? "http://localhost:8000/api/contact" // Локально для FastAPI
+        : "https://krylatka-dev.ru"; // На сервере для PHP
+
     try {
-      await axios.post("https://krylatka-dev.ru", formData);
+      // Теперь axios знает, куда именно отправлять
+      await axios.post(CONTACT_URL, formData);
+
       setStatus("✅ Сообщение успешно отправлено!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("Ошибка при отправке:", error);
       setStatus("❌ Ошибка при отправке. Попробуйте позже.");
     }
   };
