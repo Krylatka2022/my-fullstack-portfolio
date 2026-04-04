@@ -14,10 +14,13 @@ if ($data) {
     $message .= "📧 Email: " . strip_tags($data['email']) . "\n\n";
     $message .= "📝 Сообщение:\n" . strip_tags($data['message']);
 
-    $headers = "From: admin@krylatka-dev.ru\r\n";
-    $headers .= "Reply-To: " . strip_tags($data['email']) . "\r\n";
-    $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
-
+    // $headers = "From: admin@krylatka-dev.ru\r\n";
+    // $headers .= "Reply-To: " . strip_tags($data['email']) . "\r\n";
+    // $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
+    $headers = "From: info@krylatka-dev.ru\r\n";
+    $headers .= "Reply-To: " . $data['email'] . "\r\n";
+    $headers .= "Content-Type: text/plain; charset=utf-8";
+    
     // Отправка письма
     if(mail($to, $subject, $message, $headers)) {
         echo json_encode(["status" => "success"]);
