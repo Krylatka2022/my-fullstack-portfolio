@@ -2,72 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* 1. ШРИФТЫ И БАЗА */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  /* Жестко убираем горизонтальный скролл (белое пятно) */
+  overflow-x: hidden; 
+  scroll-behavior: smooth;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* 2. КУРСОР (только для больших экранов) */
+@media (min-width: 1024px) {
+  body, a, button, input, textarea {
+    cursor: none !important;
+  }
+}
+
+/* 3. ЭФФЕКТ ШУМА (исправленный URL) */
+.grainy-bg::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 99;
+  background-image: url("https://vercel.app");
+}
+
+.italic-glow {
+  filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.3));
+}
+
+/* 4. СБРОС СТАНДАРТНЫХ СТИЛЕЙ VITE */
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Убираем синие контуры при клике на кнопки в Chrome */
+button:focus, button:focus-visible {
+  outline: none;
+}
+
+/* Ограничиваем корень React, чтобы он не распирал экран */
+#root {
+  width: 100%;
+  max-width: 100vw;
 }
