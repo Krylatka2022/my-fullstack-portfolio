@@ -4,7 +4,7 @@ const getBaseUrl = () => {
   return window.location.hostname === "localhost"
     ? "http://localhost:8000/api/projects"
     : // : "https://krylatka-dev.ru"; // Указываем путь к статичному JSON на Beget
-      "https://krylatka-dev.ru/backend/api/projects";
+      "https://api.krylatka-dev.ru/api/projects";
 };
 
 export const fetchProjects = async () => {
